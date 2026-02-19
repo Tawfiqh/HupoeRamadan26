@@ -6,6 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hupoe — Ramadan Conversation Deck</title>
     <style>
+        /* Override Shopify's div:empty{display:none} for our layout/background elements */
+        .sky,
+        .stars,
+        .dust,
+        .divider,
+        .section-divider,
+        .mote {
+            display: block !important;
+        }
+
         *,
         *::before,
         *::after {
@@ -43,9 +53,31 @@
             color: var(--cream);
         }
 
+        /* ── Shopify-friendly full-bleed background wrapper ── */
+        .ramadan-page-wrapper {
+            position: relative;
+            min-height: 100vh;
+            background: transparent;
+        }
+
+        .ramadan-bg-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .ramadan-page-content {
+            position: relative;
+            z-index: 1;
+        }
+
         /* ── Rich crimson background ── */
         .sky {
-            position: fixed;
+            position: absolute;
             inset: 0;
             z-index: 0;
             background:
@@ -60,7 +92,7 @@
 
         /* ── Floating stars ── */
         .stars {
-            position: fixed;
+            position: absolute;
             inset: 0;
             z-index: 0;
             pointer-events: none;
@@ -95,7 +127,7 @@
 
         /* ── Gold dust particles ── */
         .dust {
-            position: fixed;
+            position: absolute;
             inset: 0;
             z-index: 0;
             pointer-events: none;
@@ -503,79 +535,84 @@
 
 <body>
 
-    <div class="sky"></div>
-    <div class="stars" id="stars"></div>
-    <div class="dust" id="dust"></div>
-
-    <header>
-        <h1>Hupoe</h1>
-        <p class="subtitle">Ramadan Conversation Deck</p>
-        <div class="divider"></div>
-    </header>
-
-    <!-- Hero section -->
-    <section class="hero">
-        <p class="hero-tagline">The conversational deck for meaningful nights this Ramadan</p>
-        <p class="hero-body">
-            At Hupoe, our mission is to help Muslims better connect with God and one another.
-            This Ramadan we're introducing Hupoe's Ramadan Deck &mdash; a free conversational card game
-            to help spice up the conversations at your iftar table, and throughout Ramadan.
-        </p>
-        <a href="#" class="download-btn">Download the Deck</a>
-    </section>
-
-    <!-- Info panels -->
-    <div class="info-grid">
-        <div class="info-card">
-            <h2>A Deck Designed for Ramadan</h2>
-            <p>This hand-crafted deck contains 52 questions about:</p>
-            <ul>
-                <li>Your goals and intentions this Ramadan</li>
-                <li>Your relationship with Allah</li>
-                <li>Your views on the Muslim community</li>
-                <li>Gratitude, growth, and forgiveness</li>
-            </ul>
+    <div class="ramadan-page-wrapper">
+        <div class="ramadan-bg-layer">
+            <div class="sky"></div>
+            <div class="stars" id="stars"></div>
+            <div class="dust" id="dust"></div>
         </div>
-        <div class="info-card">
-            <h2>More Than a Game</h2>
-            <p>Ramadan is about transformation &mdash; sometimes all it takes is one sincere question to:</p>
-            <ul>
-                <li>Repair a relationship</li>
-                <li>Strengthen a friendship</li>
-                <li>Inspire a new intention</li>
-                <li>Bring someone closer to Allah</li>
-            </ul>
-        </div>
-        <div class="info-card">
-            <h2>Perfect For&hellip;</h2>
-            <ul>
-                <li>Iftar gatherings</li>
-                <li>Family nights at home</li>
-                <li>Post-Taraweeh hangouts</li>
-                <li>Mosque youth circles</li>
-                <li>Suhoor reflections</li>
-                <li>Personal reflection</li>
-            </ul>
+        <div class="ramadan-page-content">
+            <header>
+                <h1>Hupoe</h1>
+                <p class="subtitle">Ramadan Conversation Deck</p>
+                <div class="divider"></div>
+            </header>
+
+            <!-- Hero section -->
+            <section class="hero">
+                <p class="hero-tagline">The conversational deck for meaningful nights this Ramadan</p>
+                <p class="hero-body">
+                    At Hupoe, our mission is to help Muslims better connect with God and one another.
+                    This Ramadan we're introducing Hupoe's Ramadan Deck &mdash; a free conversational card game
+                    to help spice up the conversations at your iftar table, and throughout Ramadan.
+                </p>
+                <a href="#" class="download-btn">Download the Deck</a>
+            </section>
+
+            <!-- Info panels -->
+            <div class="info-grid">
+                <div class="info-card">
+                    <h2>A Deck Designed for Ramadan</h2>
+                    <p>This hand-crafted deck contains 52 questions about:</p>
+                    <ul>
+                        <li>Your goals and intentions this Ramadan</li>
+                        <li>Your relationship with Allah</li>
+                        <li>Your views on the Muslim community</li>
+                        <li>Gratitude, growth, and forgiveness</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h2>More Than a Game</h2>
+                    <p>Ramadan is about transformation &mdash; sometimes all it takes is one sincere question to:</p>
+                    <ul>
+                        <li>Repair a relationship</li>
+                        <li>Strengthen a friendship</li>
+                        <li>Inspire a new intention</li>
+                        <li>Bring someone closer to Allah</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h2>Perfect For&hellip;</h2>
+                    <ul>
+                        <li>Iftar gatherings</li>
+                        <li>Family nights at home</li>
+                        <li>Post-Taraweeh hangouts</li>
+                        <li>Mosque youth circles</li>
+                        <li>Suhoor reflections</li>
+                        <li>Personal reflection</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Deck heading -->
+            <div class="deck-heading">
+                <h2>Explore the Deck</h2>
+                <p>Hover or tap a card to reveal its conversation prompt</p>
+            </div>
+
+            <main class="deck" id="deck"></main>
+
+            <footer>
+                Whether you're with close family or new acquaintances this month,<br>
+                this deck creates space for meaningful dialogue and great conversations.<br><br>
+                <a href="#" class="download-btn" style="font-size:.9rem;padding:.7rem 2rem;">Download Your Copy</a>
+                <br><br>
+                <a href="https://HupoeClub.com/Ramadan" target="_blank" rel="noopener">hupoeclub.com/ramadan</a>
+            </footer>
         </div>
     </div>
-
-    <div class="section-divider"></div>
-
-    <!-- Deck heading -->
-    <div class="deck-heading">
-        <h2>Explore the Deck</h2>
-        <p>Hover or tap a card to reveal its conversation prompt</p>
-    </div>
-
-    <main class="deck" id="deck"></main>
-
-    <footer>
-        Whether you're with close family or new acquaintances this month,<br>
-        this deck creates space for meaningful dialogue and great conversations.<br><br>
-        <a href="#" class="download-btn" style="font-size:.9rem;padding:.7rem 2rem;">Download Your Copy</a>
-        <br><br>
-        <a href="https://HupoeClub.com/Ramadan" target="_blank" rel="noopener">hupoeclub.com/ramadan</a>
-    </footer>
 
     <script>
         /* ═══════════════════════════════════════════════
