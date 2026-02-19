@@ -332,6 +332,18 @@
             opacity: .7;
         }
 
+        .info-card a {
+            color: var(--gold);
+            text-decoration: underline;
+            text-decoration-color: rgba(214, 168, 90, .4);
+            text-underline-offset: 2px;
+            transition: text-decoration-color .3s ease;
+        }
+
+        .info-card a:hover {
+            text-decoration-color: var(--gold);
+        }
+
         .info-card p {
             font-size: .95rem;
             color: var(--blush);
@@ -515,6 +527,19 @@
         }
 
         /* ── Responsive ── */
+        @media(min-width:960px) {
+            .info-grid {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                max-width: 1200px;
+            }
+
+            .info-card {
+                flex: 1 1 0;
+                max-width: none;
+            }
+        }
+
         @media(max-width:600px) {
             :root {
                 --card-w: 140px
@@ -559,8 +584,8 @@
                 <p class="hero-tagline">The conversational deck for meaningful nights this Ramadan</p>
                 <p class="hero-body">
                     At Hupoe, our mission is to help Muslims better connect with God and one another.
-                    This Ramadan we're introducing Hupoe's Ramadan Deck &mdash; a free conversational card game
-                    to help spice up the conversations at your iftar table, and throughout Ramadan.
+                    This Ramadan we're introducing Hupoe's Ramadan Deck: a free conversational card game
+                    to help enrich the conversations at your iftar table, and throughout Ramadan.
                 </p>
                 <a href="#" class="download-btn">Download the Deck</a>
             </section>
@@ -579,7 +604,7 @@
                 </div>
                 <div class="info-card">
                     <h2>More Than a Game</h2>
-                    <p>Ramadan is about transformation &mdash; sometimes all it takes is one sincere question to:</p>
+                    <p>Ramadan is about transformation &amp sometimes all it takes is one sincere question to:</p>
                     <ul>
                         <li>Repair a relationship</li>
                         <li>Strengthen a friendship</li>
@@ -588,7 +613,7 @@
                     </ul>
                 </div>
                 <div class="info-card">
-                    <h2>Perfect For&hellip;</h2>
+                    <h2>Perfect For:</h2>
                     <ul>
                         <li>Iftar gatherings</li>
                         <li>Family nights at home</li>
@@ -596,6 +621,24 @@
                         <li>Mosque youth circles</li>
                         <li>Suhoor reflections</li>
                         <li>Personal reflection</li>
+                    </ul>
+                </div>
+                <div class="info-card">
+                    <h2>Just the beginning &hellip;</h2>
+                    <p>Continue to build meaningful connections
+                        beyond Ramadan with our games:
+                    </p>
+                    <ul>
+                        <li> <a href="https://hupoeclub.com/products/hows-your-heart-card-game" target="_blank"
+                                rel="noopener">How's
+                                your heart?</a> -
+                            introspective questions for close friends &amp; loved ones
+                        </li>
+                        <li>
+                            <a href="https://hupoeclub.com/products/share-a-thought-conversational-card-game"
+                                target="_blank" rel="noopener">Share a thought?</a> -
+                            great conversation starters for strangers &amp; new friends
+                        </li>
                     </ul>
                 </div>
             </div>
