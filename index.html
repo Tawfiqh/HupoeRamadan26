@@ -15,11 +15,16 @@
         }
 
         :root {
-            --gold: #d4a843;
-            --gold-light: #f0d078;
-            --crimson: #9b1b30;
-            --deep-red: #6b0f1a;
-            --navy: #0d0a1e;
+            --gold: #D6A85A;
+            --gold-light: #EEB79E;
+            --blush: #DFCBC4;
+            --peach: #EEB79E;
+            --terracotta: #CC674A;
+            --deep-red: #96342B;
+            --black: #080605;
+            --cream: #FFFDF3;
+            --cyan: #AAF7FC;
+            --navy: #080605;
             --card-w: 200px;
             --card-ratio: 1.4;
             --flip-speed: .65s;
@@ -35,19 +40,19 @@
             background: var(--navy);
             min-height: 100vh;
             overflow-x: hidden;
-            color: #f5f0e8;
+            color: var(--cream);
         }
 
-        /* ── Night sky background ── */
+        /* ── Warm dark background ── */
         .sky {
             position: fixed;
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, #1a0e2e 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, #1c0a1a 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, #12081f 0%, transparent 70%),
-                linear-gradient(175deg, #0d0a1e 0%, #150c24 40%, #1a0e2e 100%);
+                radial-gradient(ellipse at 20% 50%, #1a0e09 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, #1c0c08 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, #140a07 0%, transparent 70%),
+                linear-gradient(175deg, #080605 0%, #120a07 40%, #160d09 100%);
             pointer-events: none;
         }
 
@@ -64,7 +69,7 @@
             position: absolute;
             width: 2px;
             height: 2px;
-            background: var(--gold-light);
+            background: var(--blush);
             border-radius: 50%;
             animation: twinkle var(--dur, 4s) ease-in-out infinite alternate;
             opacity: 0;
@@ -99,7 +104,7 @@
             position: absolute;
             width: var(--size, 3px);
             height: var(--size, 3px);
-            background: radial-gradient(circle, var(--gold-light), transparent 70%);
+            background: radial-gradient(circle, var(--gold), transparent 70%);
             border-radius: 50%;
             opacity: 0;
             animation: drift var(--dur, 12s) linear infinite;
@@ -139,7 +144,7 @@
             font-weight: 300;
             letter-spacing: .15em;
             text-transform: uppercase;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold), #c9913a, var(--gold-light));
+            background: linear-gradient(135deg, var(--peach), var(--gold), var(--terracotta), var(--peach));
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -164,7 +169,7 @@
         header .subtitle {
             margin-top: .6rem;
             font-size: clamp(.85rem, 2vw, 1.1rem);
-            color: #b8a88a;
+            color: var(--blush);
             letter-spacing: .08em;
             font-weight: 300;
         }
@@ -173,7 +178,7 @@
             width: min(280px, 60%);
             height: 1px;
             margin: 1.5rem auto 0;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            background: linear-gradient(90deg, transparent, var(--terracotta), transparent);
         }
 
         /* ── Hero / Info section ── */
@@ -189,16 +194,17 @@
         .hero-tagline {
             font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             font-style: italic;
-            color: #d8c9a8;
+            color: var(--blush);
             line-height: 1.6;
             margin-bottom: 1.8rem;
         }
 
         .hero-body {
             font-size: clamp(.95rem, 1.8vw, 1.08rem);
-            color: #b0a28e;
+            color: var(--blush);
             line-height: 1.75;
             margin-bottom: 2rem;
+            opacity: .85;
         }
 
         .download-btn {
@@ -207,19 +213,19 @@
             font-family: var(--font);
             font-size: 1.05rem;
             letter-spacing: .1em;
-            color: var(--navy);
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            color: var(--black);
+            background: linear-gradient(135deg, var(--peach), var(--gold));
             border: none;
             border-radius: 50px;
             text-decoration: none;
             cursor: pointer;
             transition: transform .3s ease, box-shadow .3s ease;
-            box-shadow: 0 4px 24px rgba(212, 168, 67, .3);
+            box-shadow: 0 4px 24px rgba(214, 168, 90, .3);
         }
 
         .download-btn:hover {
             transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 36px rgba(212, 168, 67, .45);
+            box-shadow: 0 8px 36px rgba(214, 168, 90, .45);
         }
 
         /* ── Info panels ── */
@@ -235,8 +241,8 @@
         }
 
         .info-card {
-            background: rgba(255, 255, 255, .04);
-            border: 1px solid rgba(212, 168, 67, .12);
+            background: rgba(255, 253, 243, .03);
+            border: 1px solid rgba(214, 168, 90, .12);
             border-radius: 16px;
             padding: 2rem 1.8rem;
             backdrop-filter: blur(6px);
@@ -244,14 +250,14 @@
         }
 
         .info-card:hover {
-            border-color: rgba(212, 168, 67, .3);
+            border-color: var(--terracotta);
             transform: translateY(-3px);
         }
 
         .info-card h2 {
             font-size: 1.2rem;
             font-weight: 400;
-            color: var(--gold-light);
+            color: var(--peach);
             margin-bottom: 1rem;
             letter-spacing: .04em;
         }
@@ -266,7 +272,7 @@
             padding-left: 1.3rem;
             margin-bottom: .55rem;
             font-size: .95rem;
-            color: #b8a88a;
+            color: var(--blush);
             line-height: 1.5;
         }
 
@@ -278,13 +284,13 @@
             width: 6px;
             height: 6px;
             border-radius: 50%;
-            background: var(--gold);
-            opacity: .6;
+            background: var(--terracotta);
+            opacity: .7;
         }
 
         .info-card p {
             font-size: .95rem;
-            color: #b8a88a;
+            color: var(--blush);
             line-height: 1.6;
         }
 
@@ -295,7 +301,7 @@
             width: min(400px, 70%);
             height: 1px;
             margin: 2.5rem auto;
-            background: linear-gradient(90deg, transparent, rgba(212, 168, 67, .3), transparent);
+            background: linear-gradient(90deg, transparent, rgba(204, 103, 74, .35), transparent);
         }
 
         /* ── Deck heading ── */
@@ -316,7 +322,8 @@
         .deck-heading p {
             margin-top: .5rem;
             font-size: .9rem;
-            color: #7a6e5a;
+            color: var(--blush);
+            opacity: .5;
         }
 
         /* ── Card grid ── */
@@ -385,7 +392,7 @@
         .card:hover .card-face,
         .card.flipped .card-face {
             box-shadow:
-                0 0 20px rgba(212, 168, 67, .35),
+                0 0 20px rgba(214, 168, 90, .35),
                 0 8px 40px rgba(0, 0, 0, .5);
         }
 
@@ -406,9 +413,9 @@
             inset: 0;
             background: linear-gradient(105deg,
                     transparent 30%,
-                    rgba(240, 208, 120, .12) 45%,
-                    rgba(240, 208, 120, .25) 50%,
-                    rgba(240, 208, 120, .12) 55%,
+                    rgba(238, 183, 158, .12) 45%,
+                    rgba(214, 168, 90, .25) 50%,
+                    rgba(238, 183, 158, .12) 55%,
                     transparent 70%);
             background-size: 250% 100%;
             animation: shimmer 4s ease-in-out infinite;
@@ -458,8 +465,8 @@
         }
 
         .popup {
-            background: linear-gradient(160deg, #1a1230 0%, #12091f 100%);
-            border: 1px solid rgba(212, 168, 67, .2);
+            background: linear-gradient(160deg, #1a0e09 0%, var(--black) 100%);
+            border: 1px solid rgba(214, 168, 90, .2);
             border-radius: 20px;
             padding: 2.5rem 2rem;
             max-width: 420px;
@@ -467,20 +474,20 @@
             text-align: center;
             position: relative;
             animation: slideUp .5s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 40px rgba(212, 168, 67, .08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 40px rgba(214, 168, 90, .08);
         }
 
         .popup h2 {
             font-size: 1.5rem;
             font-weight: 300;
-            color: var(--gold-light);
+            color: var(--peach);
             margin-bottom: .8rem;
             letter-spacing: .05em;
         }
 
         .popup p {
             font-size: .95rem;
-            color: #b8a88a;
+            color: var(--blush);
             line-height: 1.6;
         }
 
@@ -490,13 +497,15 @@
             right: 1.2rem;
             cursor: pointer;
             font-size: 1.2rem;
-            color: #7a6e5a;
+            color: var(--blush);
             line-height: 1;
             transition: color .2s;
+            opacity: .5;
         }
 
         .popup__close:hover {
-            color: var(--gold-light);
+            color: var(--peach);
+            opacity: 1;
         }
 
         #popup-dismiss:checked~.popup-overlay {
@@ -531,7 +540,8 @@
             z-index: 2;
             text-align: center;
             padding: 2rem 1rem 3rem;
-            color: #7a6e5a;
+            color: var(--blush);
+            opacity: .7;
             font-size: .85rem;
             letter-spacing: .04em;
             line-height: 1.7;
@@ -689,6 +699,7 @@
 
             /* Stars */
             const starBox = document.getElementById('stars');
+            const starColors = ['#DFCBC4', '#EEB79E', '#D6A85A', '#CC674A', '#DFCBC4', '#DFCBC4'];
             for (let i = 0; i < 80; i++) {
                 const s = document.createElement('div');
                 s.className = 'star';
@@ -700,6 +711,8 @@
                 const size = Math.random() > .85 ? 3 : (Math.random() > .6 ? 2 : 1);
                 s.style.width = size + 'px';
                 s.style.height = size + 'px';
+                s.style.background = starColors[Math.floor(Math.random() * starColors.length)];
+                if (Math.random() > .92) s.style.background = '#AAF7FC';
                 starBox.appendChild(s);
             }
 
