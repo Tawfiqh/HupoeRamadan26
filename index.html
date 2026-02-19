@@ -234,8 +234,9 @@
         .info-grid {
             position: relative;
             z-index: 2;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 1.5rem;
             max-width: 1000px;
             margin: 2.5rem auto 1rem;
@@ -243,6 +244,8 @@
         }
 
         .info-card {
+            flex: 1 1 280px;
+            max-width: 340px;
             background: rgba(150, 52, 43, .08);
             border: 1px solid rgba(204, 103, 74, .18);
             border-radius: 16px;
@@ -484,8 +487,9 @@
                 padding: 1.5rem .8rem 3rem
             }
 
-            .info-grid {
-                grid-template-columns: 1fr;
+            .info-card {
+                flex: 1 1 100%;
+                max-width: 100%;
             }
         }
 
