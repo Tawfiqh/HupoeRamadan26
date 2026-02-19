@@ -451,93 +451,6 @@
             transform: rotateY(180deg) scale(1.04);
         }
 
-        /* ── Popup ── */
-        #popup-dismiss {
-            display: none;
-        }
-
-        .popup-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .6);
-            backdrop-filter: blur(6px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 999;
-            animation: fadeIn .5s ease;
-        }
-
-        .popup {
-            background: linear-gradient(160deg, #2a1210 0%, #140808 100%);
-            border: 1px solid rgba(204, 103, 74, .25);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            max-width: 420px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-            animation: slideUp .5s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 50px rgba(150, 52, 43, .15);
-        }
-
-        .popup h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            color: var(--peach);
-            margin-bottom: .8rem;
-            letter-spacing: .05em;
-        }
-
-        .popup p {
-            font-size: .95rem;
-            color: var(--blush);
-            line-height: 1.6;
-        }
-
-        .popup__close {
-            position: absolute;
-            top: 1rem;
-            right: 1.2rem;
-            cursor: pointer;
-            font-size: 1.2rem;
-            color: var(--blush);
-            line-height: 1;
-            transition: color .2s;
-            opacity: .5;
-        }
-
-        .popup__close:hover {
-            color: var(--peach);
-            opacity: 1;
-        }
-
-        #popup-dismiss:checked~.popup-overlay {
-            display: none;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0
-            }
-
-            to {
-                opacity: 1
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1
-            }
-        }
-
         /* ── Footer ── */
         footer {
             position: relative;
@@ -589,16 +502,6 @@
     <div class="sky"></div>
     <div class="stars" id="stars"></div>
     <div class="dust" id="dust"></div>
-
-    <!-- Popup -->
-    <input type="checkbox" id="popup-dismiss">
-    <div class="popup-overlay">
-        <div class="popup">
-            <label for="popup-dismiss" class="popup__close" aria-label="Close">&#10005;</label>
-            <h2>Welcome</h2>
-            <p>Sign up to hear about exclusive products first.</p>
-        </div>
-    </div>
 
     <header>
         <h1>Hupoe</h1>
