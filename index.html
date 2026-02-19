@@ -173,6 +173,13 @@
             padding: 1rem 1rem 1.5rem;
         }
 
+        .logo {
+            display: block;
+            max-width: min(220px, 50%);
+            height: auto;
+            margin: 0 auto 0.5rem;
+        }
+
         header h1 {
             font-size: clamp(2.4rem, 6vw, 4rem);
             font-weight: 300;
@@ -542,7 +549,7 @@
         </div>
         <div class="ramadan-page-content">
             <header>
-                <h1>Hupoe</h1>
+                <img src="logo.png" alt="Hupoe" class="logo" />
                 <p class="subtitle">Ramadan Conversation Deck</p>
                 <div class="divider"></div>
             </header>
@@ -625,12 +632,20 @@
             LOCAL_BASE: 'cards/',
             PDF_CDN: 'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/ramadan_deck-v2.pdf?v=1771426168',
             PDF_LOCAL: 'ramadan deck-v3.pdf',
+            LOGO_CDN: 'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/Primary.png?v=1740559812',
+            LOGO_LOCAL: 'logo.png',
             TOTAL_CARDS: 55,
             CARD_BACK_NUM: 56,
         };
 
         const IMAGE_BASE = CONFIG.USE_CDN ? CONFIG.CDN_BASE : CONFIG.LOCAL_BASE;
         const PDF_URL = CONFIG.USE_CDN ? CONFIG.PDF_CDN : CONFIG.PDF_LOCAL;
+        const LOGO_URL = CONFIG.USE_CDN ? CONFIG.LOGO_CDN : CONFIG.LOGO_LOCAL;
+
+        /* Wire up logo */
+        document.querySelectorAll('.logo').forEach(function (img) {
+            img.src = LOGO_URL;
+        });
 
         /* Wire up download buttons */
         document.querySelectorAll('.download-btn').forEach(function (a) {
