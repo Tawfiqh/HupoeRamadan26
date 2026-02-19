@@ -1,6 +1,6 @@
 # Deploy Hupoe Ramadan Deck to Cloudflare Pages (free)
 
-Your site is static (HTML/CSS/JS), so you can host it for free on **Cloudflare Pages** with Git-based deploys.
+This site is static (HTML/CSS/JS), so you can host it for free on **Cloudflare Pages** with Git-based deploys.
 
 ## Steps
 
@@ -13,7 +13,7 @@ Your site is static (HTML/CSS/JS), so you can host it for free on **Cloudflare P
 
 3. **Build settings** (static site, no build)
    - **Production branch:** `main`
-   - **Build command:** `exit 0`
+   - **Build command:** paste exactly: `exit 0` (required—Cloudflare needs a command; this does nothing and succeeds)
    - **Build output directory:** leave **empty** (repo root is used)
 
 4. **Deploy**

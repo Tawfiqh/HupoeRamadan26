@@ -1,2 +1,18 @@
-cards/*
 .DS_Store
+cards/*
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Node / Wrangler
+node_modules/
+.wrangler/
+
+# Env and logs
+.env
+.env.*
+*.log
