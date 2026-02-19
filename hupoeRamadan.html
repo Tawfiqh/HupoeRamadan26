@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramadan Reflections | Hupoe</title>
+    <style>
+        /* Hide the checkbox input itself */
+        #popup-dismiss {
+            display: none;
+        }
+
+        /* Overlay */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            /* top/right/bottom/left: 0 */
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            animation: fadeIn 0.4s ease;
+        }
+
+        /* The popup box */
+        .popup {
+            background: #fff;
+            border-radius: 12px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        /* Close button (the label) */
+        .popup__close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: #888;
+            line-height: 1;
+            transition: color 0.2s;
+        }
+
+        .popup__close:hover {
+            color: #000;
+        }
+
+        /* When checkbox is checked — hide everything */
+        #popup-dismiss:checked~.popup-overlay {
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <input type="checkbox" id="popup-dismiss" hidden>
+
+    <div class="popup-overlay">
+        <div class="popup">
+            <label for="popup-dismiss" class="popup__close" aria-label="Close">✕</label>
+            <h2>Welcome! 👋</h2>
+            <p>Sign up to hear about exclusive products first.</p>
+        </div>
+    </div>
+
+
+
+
+
+    <h1>Ramadan Reflections</h1>
+
+    <p>The conversational deck for meaningful nights this Ramadan</p>
+
+    <p>Click here to <a
+            href="https://cdn.shopify.com/s/files/1/0889/0826/7785/files/ramadan_deck-v1.pdf?v=1771404706">download</a>
+    </p>
+
+    <p>At Hupoe, our mission is to help Muslims better connect with God and one another. This Ramadan we're introducing
+        Hupoe's Ramadan deck. A free conversational card game to help spice up the conversations at your iftar table,
+        and
+        throughout Ramadan.</p>
+
+    <h2>🌙 A Deck Designed for Ramadan</h2>
+
+    <p>This hand crafted deck contains 52 questions about:</p>
+
+    <ul>
+        <li>Your goals and intentions this Ramadan</li>
+        <li>Your relationship with Allah</li>
+        <li>Your views on the Muslim community</li>
+        <li>Gratitude, growth, and forgiveness</li>
+    </ul>
+
+    <h2>🕌 More Than a Game</h2>
+
+    <p>Ramadan is about transformation and sometimes all it takes is one sincere question to:</p>
+
+    <ul>
+        <li>Repair a relationship</li>
+        <li>Strengthen a friendship</li>
+        <li>Inspire a new intention</li>
+        <li>Or bring someone closer to Allah</li>
+    </ul>
+
+    <h2>💛 Perfect For…</h2>
+
+    <ul>
+        <li>Iftar gatherings</li>
+        <li>Family nights at home</li>
+        <li>Post-Taraweeh hangouts</li>
+        <li>Mosque youth circles</li>
+        <li>Suhoor reflections</li>
+        <li>Personal reflection</li>
+    </ul>
+
+    <p>Whether you're with close family or new acquaintances this month, this deck creates space for meaningful
+        dialogue,
+        and great conversations.</p>
+
+    <p>Download your copy today <a
+            href="https://cdn.shopify.com/s/files/1/0889/0826/7785/files/ramadan_deck-v1.pdf?v=1771404706">here</a>.</p>
+
+</body>
+
+</html>

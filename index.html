@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hupoe — Ramadan Conversation Deck</title>
+    <style>
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        :root {
+            --gold: #d4a843;
+            --gold-light: #f0d078;
+            --crimson: #9b1b30;
+            --deep-red: #6b0f1a;
+            --navy: #0d0a1e;
+            --card-w: 200px;
+            --card-ratio: 1.4;
+            --flip-speed: .65s;
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--navy);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #f5f0e8;
+        }
+
+        /* ── Night sky background ── */
+        .sky {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, #1a0e2e 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 20%, #1c0a1a 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 100%, #12081f 0%, transparent 70%),
+                linear-gradient(175deg, #0d0a1e 0%, #150c24 40%, #1a0e2e 100%);
+            pointer-events: none;
+        }
+
+        /* ── Floating stars ── */
+        .stars {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--gold-light);
+            border-radius: 50%;
+            animation: twinkle var(--dur, 4s) ease-in-out infinite alternate;
+            opacity: 0;
+        }
+
+        @keyframes twinkle {
+            0% {
+                opacity: 0;
+                transform: scale(.5)
+            }
+
+            50% {
+                opacity: var(--peak, .8)
+            }
+
+            100% {
+                opacity: 0;
+                transform: scale(1.2)
+            }
+        }
+
+        /* ── Gold dust particles ── */
+        .dust {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden
+        }
+
+        .mote {
+            position: absolute;
+            width: var(--size, 3px);
+            height: var(--size, 3px);
+            background: radial-gradient(circle, var(--gold-light), transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: drift var(--dur, 12s) linear infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateY(105vh) translateX(0);
+                opacity: 0
+            }
+
+            10% {
+                opacity: .6
+            }
+
+            90% {
+                opacity: .6
+            }
+
+            100% {
+                transform: translateY(-5vh) translateX(var(--dx, 30px));
+                opacity: 0
+            }
+        }
+
+        /* ── Header ── */
+        header {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem 1rem 1.5rem;
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 300;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), #c9913a, var(--gold-light));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerText 6s ease infinite;
+        }
+
+        @keyframes shimmerText {
+            0% {
+                background-position: 0% 50%
+            }
+
+            50% {
+                background-position: 100% 50%
+            }
+
+            100% {
+                background-position: 0% 50%
+            }
+        }
+
+        header p {
+            margin-top: .6rem;
+            font-size: clamp(.85rem, 2vw, 1.1rem);
+            color: #b8a88a;
+            letter-spacing: .08em;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: min(280px, 60%);
+            height: 1px;
+            margin: 1.5rem auto 0;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        /* ── Card grid ── */
+        .deck {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(var(--card-w), 1fr));
+            gap: 1.5rem;
+            padding: 2rem clamp(1rem, 3vw, 3rem) 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            justify-items: center;
+        }
+
+        /* ── Individual card ── */
+        .card {
+            width: var(--card-w);
+            height: calc(var(--card-w) * var(--card-ratio));
+            perspective: 1200px;
+            cursor: pointer;
+            opacity: 0;
+            animation: cardEnter .8s ease forwards;
+            animation-delay: var(--d, 0s);
+        }
+
+        @keyframes cardEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(40px) scale(.92)
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1)
+            }
+        }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform var(--flip-speed) cubic-bezier(.4, .2, .2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .card:hover .card-inner,
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .card:hover {
+            z-index: 10;
+        }
+
+        .card-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, .4);
+            transition: box-shadow .4s ease, transform .4s ease;
+        }
+
+        .card:hover .card-face,
+        .card.flipped .card-face {
+            box-shadow:
+                0 0 20px rgba(212, 168, 67, .35),
+                0 8px 40px rgba(0, 0, 0, .5);
+        }
+
+        .card-face img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card-front {
+            transform: rotateY(0deg);
+        }
+
+        /* ── Shimmer overlay on card back ── */
+        .card-front::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(105deg,
+                    transparent 30%,
+                    rgba(240, 208, 120, .12) 45%,
+                    rgba(240, 208, 120, .25) 50%,
+                    rgba(240, 208, 120, .12) 55%,
+                    transparent 70%);
+            background-size: 250% 100%;
+            animation: shimmer 4s ease-in-out infinite;
+            pointer-events: none;
+            border-radius: 12px;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 250% 0
+            }
+
+            100% {
+                background-position: -250% 0
+            }
+        }
+
+        .card-back {
+            transform: rotateY(180deg);
+        }
+
+        /* ── Lift on hover ── */
+        .card:hover .card-front,
+        .card.flipped .card-front {
+            transform: scale(1.04);
+        }
+
+        .card:hover .card-back,
+        .card.flipped .card-back {
+            transform: rotateY(180deg) scale(1.04);
+        }
+
+        /* ── Footer ── */
+        footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 2rem 1rem 3rem;
+            color: #7a6e5a;
+            font-size: .8rem;
+            letter-spacing: .06em;
+        }
+
+        footer a {
+            color: var(--gold);
+            text-decoration: none
+        }
+
+        footer a:hover {
+            text-decoration: underline
+        }
+
+        /* ── Responsive ── */
+        @media(max-width:600px) {
+            :root {
+                --card-w: 140px
+            }
+
+            .deck {
+                gap: 1rem;
+                padding: 1.5rem .8rem 3rem
+            }
+        }
+
+        @media(min-width:1200px) {
+            :root {
+                --card-w: 210px
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sky"></div>
+    <div class="stars" id="stars"></div>
+    <div class="dust" id="dust"></div>
+
+    <header>
+        <h1>Hupoe</h1>
+        <p>Ramadan Conversation Deck</p>
+        <div class="divider"></div>
+    </header>
+
+    <main class="deck" id="deck"></main>
+
+    <footer>
+        Tap or hover a card to reveal its conversation prompt &middot;
+        <a href="https://HupoeClub.com/Ramadan" target="_blank" rel="noopener">hupoe.com</a>
+    </footer>
+
+    <script>
+        (function () {
+            const TOTAL = 55;
+            const CARD_BACK = 'cards/card-56.jpg';
+            const deck = document.getElementById('deck');
+
+            for (let i = 1; i <= TOTAL; i++) {
+                const num = String(i).padStart(2, '0');
+                const delay = (i * .045).toFixed(3);
+
+                const card = document.createElement('div');
+                card.className = 'card';
+                card.style.setProperty('--d', delay + 's');
+
+                card.innerHTML =
+                    '<div class="card-inner">' +
+                    '<div class="card-face card-front">' +
+                    '<img src="' + CARD_BACK + '" alt="Card back" loading="lazy">' +
+                    '</div>' +
+                    '<div class="card-face card-back">' +
+                    '<img src="cards/card-' + num + '.jpg" alt="Card ' + i + '" loading="lazy">' +
+                    '</div>' +
+                    '</div>';
+
+                card.addEventListener('click', function () {
+                    this.classList.toggle('flipped');
+                });
+
+                deck.appendChild(card);
+            }
+
+            /* Stars */
+            const starBox = document.getElementById('stars');
+            for (let i = 0; i < 80; i++) {
+                const s = document.createElement('div');
+                s.className = 'star';
+                s.style.left = Math.random() * 100 + '%';
+                s.style.top = Math.random() * 100 + '%';
+                s.style.setProperty('--dur', (3 + Math.random() * 5).toFixed(1) + 's');
+                s.style.setProperty('--peak', (.4 + Math.random() * .5).toFixed(2));
+                s.style.animationDelay = (Math.random() * 6).toFixed(1) + 's';
+                const size = Math.random() > .85 ? 3 : (Math.random() > .6 ? 2 : 1);
+                s.style.width = size + 'px';
+                s.style.height = size + 'px';
+                starBox.appendChild(s);
+            }
+
+            /* Dust motes */
+            const dustBox = document.getElementById('dust');
+            for (let i = 0; i < 30; i++) {
+                const m = document.createElement('div');
+                m.className = 'mote';
+                m.style.left = Math.random() * 100 + '%';
+                m.style.setProperty('--dur', (10 + Math.random() * 14).toFixed(1) + 's');
+                m.style.setProperty('--delay', (Math.random() * 14).toFixed(1) + 's');
+                m.style.setProperty('--dx', (-40 + Math.random() * 80).toFixed(0) + 'px');
+                m.style.setProperty('--size', (2 + Math.random() * 3).toFixed(0) + 'px');
+                dustBox.appendChild(m);
+            }
+        })();
+    </script>
+</body>
+
+</html>
