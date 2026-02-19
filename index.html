@@ -579,25 +579,32 @@
 
     <script>
         /* ═══════════════════════════════════════════════
-           SHOPIFY CONFIGURATION — edit these constants
-           to match your Shopify file URLs
+           CONFIGURATION — flip USE_CDN to false to
+           serve images & PDF from local / same-domain
+           paths instead of the Shopify CDN
            ═══════════════════════════════════════════════ */
         const CONFIG = {
-            IMAGE_BASE: 'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/',
-            PDF_URL:    'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/ramadan_deck-v2.pdf?v=1771426168',
+            USE_CDN: false,
+            CDN_BASE: 'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/',
+            LOCAL_BASE: 'cards/',
+            PDF_CDN: 'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/ramadan_deck-v2.pdf?v=1771426168',
+            PDF_LOCAL: 'ramadan deck-v3.pdf',
             TOTAL_CARDS: 55,
             CARD_BACK_NUM: 56,
         };
 
+        const IMAGE_BASE = CONFIG.USE_CDN ? CONFIG.CDN_BASE : CONFIG.LOCAL_BASE;
+        const PDF_URL = CONFIG.USE_CDN ? CONFIG.PDF_CDN : CONFIG.PDF_LOCAL;
+
         /* Wire up download buttons */
         document.querySelectorAll('.download-btn').forEach(function (a) {
-            a.href = CONFIG.PDF_URL;
+            a.href = PDF_URL;
             a.setAttribute('download', '');
         });
 
         (function () {
             const TOTAL = CONFIG.TOTAL_CARDS;
-            const CARD_BACK = CONFIG.IMAGE_BASE + 'card-' + String(CONFIG.CARD_BACK_NUM).padStart(2, '0') + '.jpg';
+            const CARD_BACK = IMAGE_BASE + 'card-' + String(CONFIG.CARD_BACK_NUM).padStart(2, '0') + '.jpg';
             const deck = document.getElementById('deck');
 
             for (let i = 1; i <= TOTAL; i++) {
@@ -614,7 +621,7 @@
                     '<img src="' + CARD_BACK + '" alt="Card back" loading="lazy">' +
                     '</div>' +
                     '<div class="card-face card-back">' +
-                    '<img src="' + CONFIG.IMAGE_BASE + 'card-' + num + '.jpg" alt="Card ' + i + '" loading="lazy">' +
+                    '<img src="' + IMAGE_BASE + 'card-' + num + '.jpg" alt="Card ' + i + '" loading="lazy">' +
                     '</div>' +
                     '</div>';
 
