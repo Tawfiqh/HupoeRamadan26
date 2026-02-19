@@ -13,8 +13,10 @@ This site is static (HTML/CSS/JS), so you can host it for free on **Cloudflare P
 
 3. **Build settings** (static site, no build)
    - **Production branch:** `prod` (only pushes to `prod` deploy to the live site)
-   - **Build command:** paste exactly: `exit 0` (required—Cloudflare needs a command; this does nothing and succeeds)
-   - **Build output directory:** leave **empty** (repo root is used)
+   - **Build command:** `exit 0`
+   - **Build output directory:** leave **empty**
+   - **Deploy command:** `npx wrangler pages deploy . --project-name=hupoeramadan26`  
+     (Use **Pages** deploy, not `wrangler deploy` — that one is for Workers and will fail.)
 
 4. **Deploy**
    - Click **Save and Deploy**. The first build may take a minute.
