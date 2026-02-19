@@ -28,12 +28,12 @@ Later, every push to **`prod`** will trigger a production deploy. Use `main` for
 
 ---
 
-### If Git deploy still doesn’t work: deploy from your machine
+### Deploy from your machine (recommended)
 
-We got the site live by running Wrangler **locally** (after `wrangler login` in the browser). You can keep using that:
+Run the script (after `npx wrangler login` once in the browser):
 
 ```bash
-git checkout prod && git merge main && npx wrangler pages deploy . --project-name=hupoeramadan26 && git push origin prod && git checkout main
+./deploy.sh
 ```
 
-That merges `main` into `prod`, deploys the current folder to Pages, then pushes and switches back to `main`.
+It merges `main` into `prod`, deploys to Cloudflare Pages, pushes `prod`, and switches back to `main`.
