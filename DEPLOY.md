@@ -12,7 +12,7 @@ This site is static (HTML/CSS/JS), so you can host it for free on **Cloudflare P
    - Choose the **HupoeRamadan26** repository and click **Begin setup**.
 
 3. **Build settings** (static site, no build)
-   - **Production branch:** `main`
+   - **Production branch:** `prod` (only pushes to `prod` deploy to the live site)
    - **Build command:** paste exactly: `exit 0` (required—Cloudflare needs a command; this does nothing and succeeds)
    - **Build output directory:** leave **empty** (repo root is used)
 
@@ -23,4 +23,4 @@ This site is static (HTML/CSS/JS), so you can host it for free on **Cloudflare P
    - After the build finishes, your site will be at:
    - **https://hupoeramadan26.pages.dev** (or the URL shown in the dashboard).
 
-Later, every push to `main` will trigger a new deploy automatically.
+Later, every push to **`prod`** will trigger a production deploy. Use `main` for development; merge or push to `prod` when you want to go live.
