@@ -24,7 +24,7 @@
             --black: #080605;
             --cream: #FFFDF3;
             --cyan: #AAF7FC;
-            --navy: #080605;
+            --navy: #140808;
             --card-w: 200px;
             --card-ratio: 1.4;
             --flip-speed: .65s;
@@ -43,16 +43,18 @@
             color: var(--cream);
         }
 
-        /* ── Warm dark background ── */
+        /* ── Rich crimson background ── */
         .sky {
             position: fixed;
             inset: 0;
             z-index: 0;
             background:
-                radial-gradient(ellipse at 20% 50%, #1a0e09 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 20%, #1c0c08 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 100%, #140a07 0%, transparent 70%),
-                linear-gradient(175deg, #080605 0%, #120a07 40%, #160d09 100%);
+                radial-gradient(ellipse at 15% 25%, rgba(150, 52, 43, .3) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 60%, rgba(204, 103, 74, .15) 0%, transparent 45%),
+                radial-gradient(ellipse at 50% 95%, rgba(150, 52, 43, .25) 0%, transparent 55%),
+                radial-gradient(ellipse at 92% 8%, rgba(170, 247, 252, .04) 0%, transparent 35%),
+                radial-gradient(ellipse at 40% 50%, rgba(214, 168, 90, .06) 0%, transparent 50%),
+                linear-gradient(175deg, #140808 0%, #1e0c0a 25%, #2a1210 55%, #1a0a08 100%);
             pointer-events: none;
         }
 
@@ -220,12 +222,12 @@
             text-decoration: none;
             cursor: pointer;
             transition: transform .3s ease, box-shadow .3s ease;
-            box-shadow: 0 4px 24px rgba(214, 168, 90, .3);
+            box-shadow: 0 4px 24px rgba(204, 103, 74, .3), 0 0 40px rgba(214, 168, 90, .15);
         }
 
         .download-btn:hover {
             transform: translateY(-2px) scale(1.03);
-            box-shadow: 0 8px 36px rgba(214, 168, 90, .45);
+            box-shadow: 0 8px 36px rgba(204, 103, 74, .4), 0 0 60px rgba(214, 168, 90, .2);
         }
 
         /* ── Info panels ── */
@@ -241,16 +243,17 @@
         }
 
         .info-card {
-            background: rgba(255, 253, 243, .03);
-            border: 1px solid rgba(214, 168, 90, .12);
+            background: rgba(150, 52, 43, .08);
+            border: 1px solid rgba(204, 103, 74, .18);
             border-radius: 16px;
             padding: 2rem 1.8rem;
             backdrop-filter: blur(6px);
-            transition: border-color .3s ease, transform .3s ease;
+            transition: border-color .3s ease, transform .3s ease, background .3s ease;
         }
 
         .info-card:hover {
             border-color: var(--terracotta);
+            background: rgba(150, 52, 43, .14);
             transform: translateY(-3px);
         }
 
@@ -385,14 +388,15 @@
             backface-visibility: hidden;
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, .4);
+            box-shadow: 0 4px 20px rgba(20, 8, 8, .6);
             transition: box-shadow .4s ease, transform .4s ease;
         }
 
         .card:hover .card-face,
         .card.flipped .card-face {
             box-shadow:
-                0 0 20px rgba(214, 168, 90, .35),
+                0 0 15px rgba(204, 103, 74, .3),
+                0 0 30px rgba(214, 168, 90, .2),
                 0 8px 40px rgba(0, 0, 0, .5);
         }
 
@@ -465,8 +469,8 @@
         }
 
         .popup {
-            background: linear-gradient(160deg, #1a0e09 0%, var(--black) 100%);
-            border: 1px solid rgba(214, 168, 90, .2);
+            background: linear-gradient(160deg, #2a1210 0%, #140808 100%);
+            border: 1px solid rgba(204, 103, 74, .25);
             border-radius: 20px;
             padding: 2.5rem 2rem;
             max-width: 420px;
@@ -474,7 +478,7 @@
             text-align: center;
             position: relative;
             animation: slideUp .5s ease;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 40px rgba(214, 168, 90, .08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .5), 0 0 50px rgba(150, 52, 43, .15);
         }
 
         .popup h2 {
@@ -718,7 +722,8 @@
 
             /* Dust motes */
             const dustBox = document.getElementById('dust');
-            for (let i = 0; i < 30; i++) {
+            const moteColors = ['#D6A85A', '#CC674A', '#EEB79E', '#D6A85A', '#CC674A'];
+            for (let i = 0; i < 35; i++) {
                 const m = document.createElement('div');
                 m.className = 'mote';
                 m.style.left = Math.random() * 100 + '%';
@@ -726,6 +731,8 @@
                 m.style.setProperty('--delay', (Math.random() * 14).toFixed(1) + 's');
                 m.style.setProperty('--dx', (-40 + Math.random() * 80).toFixed(0) + 'px');
                 m.style.setProperty('--size', (2 + Math.random() * 3).toFixed(0) + 'px');
+                const c = moteColors[Math.floor(Math.random() * moteColors.length)];
+                m.style.background = 'radial-gradient(circle, ' + c + ', transparent 70%)';
                 dustBox.appendChild(m);
             }
         })();
