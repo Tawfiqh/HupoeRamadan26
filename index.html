@@ -574,9 +574,26 @@
     </footer>
 
     <script>
+        /* ═══════════════════════════════════════════════
+           SHOPIFY CONFIGURATION — edit these constants
+           to match your Shopify file URLs
+           ═══════════════════════════════════════════════ */
+        const CONFIG = {
+            IMAGE_BASE: 'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/',
+            PDF_URL:    'https://cdn.shopify.com/s/files/1/0889/0826/7785/files/ramadan_deck-v2.pdf?v=1771426168',
+            TOTAL_CARDS: 55,
+            CARD_BACK_NUM: 56,
+        };
+
+        /* Wire up download buttons */
+        document.querySelectorAll('.download-btn').forEach(function (a) {
+            a.href = CONFIG.PDF_URL;
+            a.setAttribute('download', '');
+        });
+
         (function () {
-            const TOTAL = 55;
-            const CARD_BACK = 'cards/card-56.jpg';
+            const TOTAL = CONFIG.TOTAL_CARDS;
+            const CARD_BACK = CONFIG.IMAGE_BASE + 'card-' + String(CONFIG.CARD_BACK_NUM).padStart(2, '0') + '.jpg';
             const deck = document.getElementById('deck');
 
             for (let i = 1; i <= TOTAL; i++) {
@@ -593,7 +610,7 @@
                     '<img src="' + CARD_BACK + '" alt="Card back" loading="lazy">' +
                     '</div>' +
                     '<div class="card-face card-back">' +
-                    '<img src="cards/card-' + num + '.jpg" alt="Card ' + i + '" loading="lazy">' +
+                    '<img src="' + CONFIG.IMAGE_BASE + 'card-' + num + '.jpg" alt="Card ' + i + '" loading="lazy">' +
                     '</div>' +
                     '</div>';
 
